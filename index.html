@@ -35,36 +35,36 @@
 <div class="container">
     <div class="row search-box">
         <div class="col-12">
-            <input class="form-control" type="text" placeholder="Rechercher un terme..." aria-label="Search">
+            <input class="form-control" id="searchInput" type="text" placeholder="Rechercher un terme..." aria-label="Search" onkeyup="searchTerm()">
         </div>
     </div>
 
-    <!-- Section des termes commençant par '__' -->
-    <h3>Termes commençant par '__'</h3>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card">
+    <div id="cardContainer">
+        <!-- Section des termes commençant par '__' -->
+        <h3>Termes commençant par '__'</h3>
+        <div class="row">
+            <!-- Carte __init__ -->
+            <div class="col-md-3 card">
                 <div class="card-header">__init__</div>
                 <div class="card-body">
                     Méthode d'initialisation d'une classe. Exemple: def __init__(self): ...
                 </div>
             </div>
+            <!-- Autres cartes... -->
         </div>
-        <!-- Trois autres cartes pour cette section... -->
-    </div>
 
-    <!-- Section des termes commençant par 'A' -->
-    <h3>Termes commençant par 'A'</h3>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card">
+        <!-- Section des termes commençant par 'A' -->
+        <h3>Termes commençant par 'A'</h3>
+        <div class="row">
+            <!-- Carte API -->
+            <div class="col-md-3 card">
                 <div class="card-header">API</div>
                 <div class="card-body">
                     Interface de programmation permettant de connecter des logiciels.
                 </div>
             </div>
+            <!-- Autres cartes... -->
         </div>
-        <!-- Trois autres cartes pour cette section... -->
     </div>
 </div>
 
@@ -72,6 +72,24 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.6/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+
+<script>
+    function searchTerm() {
+        var input, filter, cards, i, cardHeader;
+        input = document.getElementById('searchInput');
+        filter = input.value.toUpperCase();
+        cards = document.getElementById('cardContainer').getElementsByClassName('card');
+
+        for (i = 0; i < cards.length; i++) {
+            cardHeader = cards[i].getElementsByClassName('card-header')[0];
+            if (cardHeader.innerText.toUpperCase().indexOf(filter) > -1) {
+                cards[i].style.display = "";
+            } else {
+                cards[i].style.display = "none";
+            }
+        }
+    }
+</script>
 
 </body>
 </html>
